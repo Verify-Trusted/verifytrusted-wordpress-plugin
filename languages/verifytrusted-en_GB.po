@@ -1,0 +1,143 @@
+# Copyright (C) 2025 Verify Trusted
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Verify Trusted Reviews 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/verifytrusted\n"
+"POT-Creation-Date: 2025-09-21T12:31:21+00:00\n"
+"PO-Revision-Date: 2025-09-21 13:35+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.7\n"
+"X-Domain: verifytrusted\n"
+
+#. Plugin Name of the plugin
+#: verifytrusted.php
+msgid "Verify Trusted Reviews"
+msgstr "Verify Trusted Reviews"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: verifytrusted.php
+msgid "https://www.verifytrusted.com/"
+msgstr "https://www.verifytrusted.com/"
+
+#. Description of the plugin
+#: verifytrusted.php
+msgid "Display aggregated reviews from Verify Trusted on your site."
+msgstr "Display aggregated reviews from Verify Trusted on your site."
+
+#. Author of the plugin
+#: verifytrusted.php
+msgid "Verify Trusted"
+msgstr "Verify Trusted"
+
+#: admin-views/settings-page-no-account.php:12
+msgid "Unknown user"
+msgstr "Unknown user"
+
+#: admin-views/settings-page-no-account.php:23
+msgid "New to Verify Trusted?"
+msgstr "New to Verify Trusted?"
+
+#: admin-views/settings-page-no-account.php:25
+msgid "Free account sign-up for Google Reviews widgets"
+msgstr "Free account sign-up for Google Reviews widgets"
+
+#: admin-views/settings-page-no-account.php:29
+msgid "Your name"
+msgstr "Your name"
+
+#: admin-views/settings-page-no-account.php:35
+msgid "Your email"
+msgstr "Your email"
+
+#: admin-views/settings-page-no-account.php:41
+msgid "Business name"
+msgstr "Business name"
+
+#: admin-views/settings-page-no-account.php:47
+msgid "Primary domain"
+msgstr "Primary domain"
+
+#: admin-views/settings-page-no-account.php:51
+msgid ""
+"This domain needs to exactly match what's used in your review source(s), "
+"such as Google Business Profile"
+msgstr ""
+"This domain needs to exactly match what's used in your review source(s), "
+"such as Google Business Profile"
+
+#: admin-views/settings-page-no-account.php:55
+msgid "Create account"
+msgstr "Create account"
+
+#: admin-views/settings-page.php:34
+msgid "Already set-up on Verify Trusted?"
+msgstr "Already set-up on Verify Trusted?"
+
+#: admin-views/settings-page.php:39
+msgid "Enter your domain name and hit Save to import your reviews"
+msgstr "Enter your domain name and hit Save to import your reviews"
+
+#: admin-views/settings-page.php:52
+msgid "Your profile domain"
+msgstr "Your profile domain"
+
+#: admin-views/settings-page.php:63
+msgid "Save domain & fetch widgets"
+msgstr "Save domain & fetch widgets"
+
+#: admin-views/settings-page.php:82
+msgid "Dark background?"
+msgstr "Dark background?"
+
+#: admin-views/widgets-not-ready.php:6
+msgid "Your account is being initialized"
+msgstr "Your account is being initialised"
+
+#: admin-views/widgets-not-ready.php:7
+msgid ""
+"When our servers have collated and processed your reviews, your widget will "
+"appear here."
+msgstr ""
+"When our servers have collated and processed your reviews, your widget will "
+"appear here."
+
+#: includes/class-admin-hooks.php:42
+msgid "Copied"
+msgstr "Copied"
+
+#: includes/class-api-client.php:111
+msgid "Company domain not specified"
+msgstr "Company domain not specified"
+
+#: includes/class-api-client.php:158
+msgid "Domain/company not registered with Verify Trusted"
+msgstr "Domain/company not registered with Verify Trusted"
+
+#: includes/class-api-client.php:162
+msgid "Unknown error - plase try again in a few moments"
+msgstr "Unknown error - plase try again in a few moments"
+
+#: includes/class-api-client.php:194
+msgid ""
+"Failed to download your widgets. Have you signed-up with Verify Trusted yet?"
+msgstr ""
+"Failed to download your widgets. Have you signed-up with Verify Trusted yet?"
+
+#: includes/class-api-client.php:227
+msgid "Connection or server error. Please try again in a few moments."
+msgstr "Connection or server error. Please try again in a few moments."
+
+#: includes/class-api-client.php:229
+msgid "Failed to create an account on Verify Trusted"
+msgstr "Failed to create an account on Verify Trusted"
+
+#: includes/class-plugin.php:242
+msgid "Please complete all of the sign-up fields"
+msgstr "Please complete all of the sign-up fields"

@@ -1,0 +1,26 @@
+/**
+ * vtrust-admin-all.css
+ */
+
+:root {
+  --vt-toggle-width: 4em;
+  --vt-toggle-height: 2em;
+  --vt-toggle-gutter: 0.3em;
+
+  --vt-brand-green: #53b481;
+  --vt-error-red: darkred;
+}
+
+body #adminmenu .toplevel_page_verifytrusted div.wp-menu-image {
+  position: relative;
+}
+
+body #adminmenu .toplevel_page_verifytrusted div.wp-menu-image img {
+  width: 70%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  opacity: 1;
+}
