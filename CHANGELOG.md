@@ -4,6 +4,15 @@ All notable changes to the Verify Trusted Reviews plugin are documented here.
 
 ---
 
+## [1.2.0] - 2026-03-07
+
+### Changed
+
+- Archived v1 codebase to `archive/v1/`.
+- New plugin bootstrap for v2 development against the rebuilt Verify Trusted API.
+
+---
+
 ## [1.1.0] - 2025-11-13
 
 ### Added
