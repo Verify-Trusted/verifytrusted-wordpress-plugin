@@ -4,6 +4,26 @@ All notable changes to the Verify Trusted Reviews plugin are documented here.
 
 ---
 
+## [1.3.0] - 2026-03-07
+
+### Added
+
+- New API client for the rebuilt Verify Trusted Fastify API.
+- Auto-discovery of widget UUID and trust seal UUID from company domain.
+- Company profile caching with timestamp for admin display and TTL refresh.
+- Widget and trust seal preview on the admin settings page.
+- Diagnostics table showing hosts, UUIDs, company info, and environment.
+- Environment switching via `verifytrusted_api_hosts` filter (production/staging).
+- Reset Company Data button to clear all stored company data.
+- PHPCS configuration and full compliance.
+
+### Changed
+
+- Settings page rebuilt using the WordPress Settings API.
+- Company domain is now the only user input; widget UUID is auto-discovered.
+
+---
+
 ## [1.2.0] - 2026-03-07
 
 ### Changed

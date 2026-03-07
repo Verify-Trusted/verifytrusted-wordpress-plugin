@@ -5,7 +5,7 @@
 [![WordPress Plugin Required PHP Version](https://img.shields.io/wordpress/plugin/required-php/verifytrusted)](https://wordpress.org/plugins/verifytrusted/)
 [![License: GPLv2](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
-**Version:** 1.1.0
+**Version:** 1.3.0
 **Requires WordPress:** 6.0+
 **Requires PHP:** 8.1+
 **Tested up to:** 6.8

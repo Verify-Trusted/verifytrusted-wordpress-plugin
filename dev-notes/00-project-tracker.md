@@ -2,8 +2,8 @@
 
 **Version:** 2.0.0 (planned)
 **Last Updated:** 7 March 2026
-**Current Phase:** Pre-development (archiving v1, planning v2)
-**Overall Progress:** 0%
+**Current Phase:** Milestone 1 (Foundation & Loader Script)
+**Overall Progress:** 15%
 
 ---
 
@@ -15,8 +15,10 @@ The Verify Trusted Reviews plugin connects WordPress sites to the verifytrusted.
 
 ## Active TODO Items
 
-- [ ] Archive v1 codebase (move to `archive/v1/` or tag in git)
-- [ ] Begin M1 development
+- [x] Archive v1 codebase (move to `archive/v1/`)
+- [x] Begin M1 development
+- [ ] Inject loader.js on the front-end (shortcode)
+- [ ] `[verify_trusted_reviews]` shortcode (loader mode)
 
 ---
 
@@ -68,16 +70,16 @@ This plugin is already published: https://wordpress.org/plugins/verifytrusted/
 
 Re-establish the plugin skeleton with clean architecture, then replicate the existing loader.js injection with the new API.
 
-- [ ] New plugin bootstrap with autoloading (PSR-4 or WordPress-style)
-- [ ] Constants file for new API base URL and option keys
-- [ ] Environment switching via `verifytrusted_api_hosts` filter (production/staging)
-- [ ] Settings page: connect account by domain (simplified)
-- [ ] New API client class for the rebuilt Verify Trusted API (Fastify)
+- [x] New plugin bootstrap with autoloading (PSR-4 or WordPress-style)
+- [x] Constants file for new API base URL and option keys
+- [x] Environment switching via `verifytrusted_api_hosts` filter (production/staging)
+- [x] Settings page: connect account by domain (simplified)
+- [x] New API client class for the rebuilt Verify Trusted API (Fastify)
 - [ ] Inject `loader.js` script on the front-end (parity with v1)
 - [ ] `[verify_trusted_reviews]` shortcode (loader mode)
-- [ ] Admin page with widget preview
-- [ ] API response caching (transients)
-- [ ] PHPCS configuration and compliance
+- [x] Admin page with widget preview
+- [x] API response caching (wp_options with timestamp)
+- [x] PHPCS configuration and compliance
 
 **Exit criteria:** Plugin can connect to VT, fetch widget UUID, and inject loader.js via shortcode - matching v1 functionality on the new API.
 

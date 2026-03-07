@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<ruleset name="Verify Trusted Reviews">
+	<description>WordPress Coding Standards for the Verify Trusted Reviews plugin</description>
+
+	<file>.</file>
+
+	<!-- Exclude patterns -->
+	<exclude-pattern>*/archive/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/assets/*</exclude-pattern>
+	<exclude-pattern>*/.git/*</exclude-pattern>
+	<exclude-pattern>*/dev-notes/*</exclude-pattern>
+
+	<!-- Arguments -->
+	<arg value="sp"/>
+	<arg name="basepath" value="."/>
+	<arg name="colors"/>
+	<arg name="extensions" value="php"/>
+	<arg name="parallel" value="8"/>
+
+	<!-- Rules -->
+	<rule ref="WordPress">
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+	</rule>
+
+	<!-- Prefixes -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="vtrust"/>
+				<element value="verifytrusted"/>
+				<element value="Verify_Trusted"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Text domain -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="verifytrusted"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>
