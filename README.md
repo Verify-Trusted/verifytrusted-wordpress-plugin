@@ -1,5 +1,10 @@
 # Verify Trusted Reviews
 
+[![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/verifytrusted)](https://wordpress.org/plugins/verifytrusted/)
+[![WordPress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/verifytrusted)](https://wordpress.org/plugins/verifytrusted/)
+[![WordPress Plugin Required PHP Version](https://img.shields.io/wordpress/plugin/required-php/verifytrusted)](https://wordpress.org/plugins/verifytrusted/)
+[![License: GPLv2](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+
 **Version:** 1.1.0
 **Requires WordPress:** 6.0+
 **Requires PHP:** 8.1+
@@ -130,14 +135,32 @@ The plugin communicates with the following Verify Trusted API endpoints:
 
 | Endpoint | Method | Purpose |
 |---|---|---|
-| `api.verifytrusted.com/api/company?url={domain}` | GET | Look up company by domain |
-| `api.verifytrusted.com/api/widgets/{company_id}/` | GET | Fetch widget metadata and reviews |
-| `api.verifytrusted.com/api/users/register/` | POST | Create a new account |
+| `{api_host}/api/company?url={domain}` | GET | Look up company by domain |
+| `{api_host}/api/widgets/{company_id}/` | GET | Fetch widget metadata and reviews |
+| `{api_host}/api/users/register/` | POST | Create a new account |
 
 The front-end widget is loaded via:
 ```
-https://admin.verifytrusted.com/loader.js?{widget_uuid}
+{admin_host}/loader.js?{widget_uuid}
 ```
+
+### Environment Switching
+
+By default the plugin connects to the production servers. Developers can switch to staging (or any other environment) using a filter:
+
+```php
+add_filter( 'verifytrusted_api_hosts', function ( array $hosts ): array {
+    return array(
+        'api'   => 'https://api.staging.verifytrusted.com',
+        'admin' => 'https://admin.staging.verifytrusted.com',
+    );
+} );
+```
+
+| Environment | API Host | Admin Host |
+|---|---|---|
+| Production (default) | `https://api.verifytrusted.com` | `https://admin.verifytrusted.com` |
+| Staging | `https://api.staging.verifytrusted.com` | `https://admin.staging.verifytrusted.com` |
 
 ---
 

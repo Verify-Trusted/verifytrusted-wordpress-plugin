@@ -97,10 +97,30 @@ type: brief description
 - `shortcode-reviews-widget.php` - `[verify_trusted_reviews]` shortcode
 - API cache stored in `wp_options` key `vt_meta` with 4-hour TTL
 
-### API Base
+### API Environments
 
-- Current: `https://api.verifytrusted.com/api/`
-- Loader: `https://admin.verifytrusted.com/loader.js?{widget_uuid}`
+Switchable via the `verifytrusted_api_hosts` filter:
+
+```php
+// Default: production
+add_filter( 'verifytrusted_api_hosts', function ( array $hosts ): array {
+    return array(
+        'api'   => 'https://api.staging.verifytrusted.com',
+        'admin' => 'https://admin.staging.verifytrusted.com',
+    );
+} );
+```
+
+| Environment | API Host | Admin Host |
+|---|---|---|
+| Production | `https://api.verifytrusted.com` | `https://admin.verifytrusted.com` |
+| Staging | `https://api.staging.verifytrusted.com` | `https://admin.staging.verifytrusted.com` |
+
+- Production: legacy Django API (being decommissioned)
+- Staging: new Node+Fastify API (v0.33.0, Bearer JWT auth)
+- OpenAPI spec: `https://api.staging.verifytrusted.com/openapi.json`
+- Loader script: `{admin_host}/loader.js?{widget_uuid}`
+- WordPress.org listing: https://wordpress.org/plugins/verifytrusted/
 
 ---
 

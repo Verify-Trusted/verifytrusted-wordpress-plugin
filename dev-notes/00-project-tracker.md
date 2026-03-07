@@ -16,8 +16,49 @@ The Verify Trusted Reviews plugin connects WordPress sites to the verifytrusted.
 ## Active TODO Items
 
 - [ ] Archive v1 codebase (move to `archive/v1/` or tag in git)
-- [ ] Document the new Verify Trusted API endpoints and response shapes
 - [ ] Begin M1 development
+
+---
+
+## Environments
+
+The plugin must support switching between production and staging servers via a WordPress filter. Each environment has two hosts:
+
+| Environment | API Host | Admin/Assets Host |
+|---|---|---|
+| **Production** | `https://api.verifytrusted.com` | `https://admin.verifytrusted.com` |
+| **Staging** | `https://api.staging.verifytrusted.com` | `https://admin.staging.verifytrusted.com` |
+
+- **Production** runs the legacy Django API (slow, outdated Swagger docs)
+- **Staging** runs the new Node+Fastify API (v0.33.0, up-to-date OpenAPI spec)
+- OpenAPI schema: `https://api.staging.verifytrusted.com/openapi.json`
+- Switching is done via the `verifytrusted_api_hosts` filter returning `array( 'api' => '...', 'admin' => '...' )`
+- Default is production; staging is for development/testing
+- When the Fastify system goes live to production, we publish the updated plugin to wordpress.org simultaneously
+
+### New API (Staging) - Key Endpoints
+
+| Method | Path | Purpose |
+|---|---|---|
+| GET | `/api/companies` | List companies (paginated) |
+| GET | `/api/companies/{id}` | Company details |
+| GET | `/api/me/companies` | Primary company with nested data |
+| GET | `/api/companies/{companyId}/reviews` | Company reviews |
+| GET | `/api/reviews` | List reviews (paginated, filtered) |
+| GET | `/api/companies/{companyId}/review-sources` | Review sources |
+| POST | `/api/auth/token` | Auth (Bearer JWT, 5-min access + 7-day refresh) |
+
+### New API - Key Schemas
+
+**Review:** `id`, `author_name`, `author_image`, `rating` (0-5), `title`, `body`, `review_date`, `is_verified`, `is_active`, `platform_id`, `company_id`, `review_source_id`, `external_id`
+
+**Company:** `id`, `name`, `url`, `logo`, `status`, `reviews_count`, `average_rating`, `is_verified`, `review_sources[]`, `brand_aggregated_reviews[]`
+
+**Review Source:** `id`, `platform{}`, `url`, `reviews_count`, `average_rating`, `sync_status`, `show_on_profile`
+
+### WordPress.org
+
+This plugin is already published: https://wordpress.org/plugins/verifytrusted/
 
 ---
 
@@ -29,8 +70,9 @@ Re-establish the plugin skeleton with clean architecture, then replicate the exi
 
 - [ ] New plugin bootstrap with autoloading (PSR-4 or WordPress-style)
 - [ ] Constants file for new API base URL and option keys
+- [ ] Environment switching via `verifytrusted_api_hosts` filter (production/staging)
 - [ ] Settings page: connect account by domain (simplified)
-- [ ] New API client class for the rebuilt Verify Trusted API
+- [ ] New API client class for the rebuilt Verify Trusted API (Fastify)
 - [ ] Inject `loader.js` script on the front-end (parity with v1)
 - [ ] `[verify_trusted_reviews]` shortcode (loader mode)
 - [ ] Admin page with widget preview
