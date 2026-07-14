@@ -10,6 +10,12 @@
 *~
 .projectile
 
+# Local tooling config
+/.claude/
+
+# Local-only project material (kept on disk, not in the public repo)
+/dev-notes/
+
 # OS
 .DS_Store
 Thumbs.db

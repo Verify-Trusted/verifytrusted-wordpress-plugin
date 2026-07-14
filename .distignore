@@ -1,0 +1,46 @@
+# Files and directories excluded from the WordPress.org distribution build.
+# Anything listed here is kept out of the trunk/ and tags/ SVN commits and the .zip.
+
+# Version control & CI
+/.git
+/.github
+/.gitignore
+/.gitattributes
+/.distignore
+
+# Tooling / local config
+/.claude
+
+# Editor / OS
+/.idea
+/.vscode
+/.projectile
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Local-only project material
+/dev-notes
+/docs
+
+# Dev tooling
+/bin
+/dist
+/build
+/node_modules
+/vendor
+/tests
+/phpcs.xml
+/composer.json
+/composer.lock
+/package.json
+/package-lock.json
+
+# Repo docs (WordPress.org uses readme.txt instead)
+/CLAUDE.md
+/README.md
+/CHANGELOG.md
+
+# Logs
+*.log

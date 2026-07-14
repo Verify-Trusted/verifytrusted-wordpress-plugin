@@ -50,13 +50,43 @@ class Plugin {
 	private ?Api_Client $api_client = null;
 
 	/**
+	 * Shortcode handler instance.
+	 *
+	 * @var ?Shortcode
+	 */
+	private ?Shortcode $shortcode = null;
+
+	/**
 	 * Register all hooks for the plugin.
 	 *
 	 * @since 1.2.0
 	 */
 	public function run(): void {
+		add_action( 'init', array( $this, 'load_textdomain' ) );
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+		add_action( 'init', array( $this, 'register_shortcodes' ) );
+	}
+
+	/**
+	 * Load the plugin text domain so bundled translations in languages/ apply.
+	 *
+	 * Hooked on init - all of the plugin's translated strings are used from
+	 * admin_init onwards, so the domain is always loaded in time.
+	 *
+	 * @since 1.4.0
+	 */
+	public function load_textdomain(): void {
+		load_plugin_textdomain( 'verifytrusted', false, dirname( VTRUST_BASENAME ) . '/languages' );
+	}
+
+	/**
+	 * Register the plugin's shortcodes.
+	 *
+	 * @since 1.4.0
+	 */
+	public function register_shortcodes(): void {
+		$this->get_shortcode()->register();
 	}
 
 	/**
@@ -66,10 +96,38 @@ class Plugin {
 	 */
 	public function admin_init(): void {
 		$this->get_settings()->register();
+		$this->maybe_migrate_legacy_domain();
 		$this->maybe_reset_company();
 
 		$admin_hooks = $this->get_admin_hooks();
 		add_action( 'admin_enqueue_scripts', array( $admin_hooks, 'enqueue_assets' ), 10, 1 );
+	}
+
+	/**
+	 * Migrate the company domain from the legacy v1 option.
+	 *
+	 * Runs whenever the old `vt_profile_domain` option holds a value and the
+	 * current company domain option is empty - no version check needed, the
+	 * option state alone drives it, so it self-limits to a single run.
+	 *
+	 * Writing the value with update_option() triggers the sanitize callback
+	 * registered by Settings::register() (called immediately above), which
+	 * normalises the domain and discovers the widget UUID and cached profile.
+	 * The widget therefore works right after migration, with no manual re-save.
+	 *
+	 * @since 1.4.0
+	 */
+	private function maybe_migrate_legacy_domain(): void {
+		$legacy_domain  = (string) get_option( OPT_LEGACY_COMPANY_DOMAIN, '' );
+		$current_domain = (string) get_option( OPT_COMPANY_DOMAIN, '' );
+
+		if ( ! empty( $legacy_domain ) && empty( $current_domain ) ) {
+			update_option( OPT_COMPANY_DOMAIN, $legacy_domain );
+
+			// Remove the migrated option and its now-defunct companion flag.
+			delete_option( OPT_LEGACY_COMPANY_DOMAIN );
+			delete_option( OPT_LEGACY_HAS_PATH );
+		}
 	}
 
 	/**
@@ -125,8 +183,8 @@ class Plugin {
 	 *
 	 *     add_filter( 'verifytrusted_api_hosts', function ( array $hosts ): array {
 	 *         return array(
-	 *             'api'   => 'https://api.staging.verifytrusted.com',
-	 *             'admin' => 'https://admin.staging.verifytrusted.com',
+	 *             'api'   => 'https://api.your-dev-host.example',
+	 *             'admin' => 'https://admin.your-dev-host.example',
 	 *         );
 	 *     } );
 	 *
@@ -226,6 +284,21 @@ class Plugin {
 		}
 
 		return $this->api_client;
+	}
+
+	/**
+	 * Get the shortcode handler instance (lazy-loaded).
+	 *
+	 * @since 1.4.0
+	 *
+	 * @return Shortcode
+	 */
+	public function get_shortcode(): Shortcode {
+		if ( is_null( $this->shortcode ) ) {
+			$this->shortcode = new Shortcode( $this );
+		}
+
+		return $this->shortcode;
 	}
 
 	/**

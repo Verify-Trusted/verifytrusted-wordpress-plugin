@@ -41,6 +41,11 @@ const OPT_COMPANY_DOMAIN  = 'verifytrusted_company_domain';
 const OPT_WIDGET_UUID     = 'verifytrusted_widget_uuid';
 const OPT_COMPANY_PROFILE = 'verifytrusted_company_profile';
 
+// Legacy v1 option keys, used only for one-time migration. The HAS_PATH key
+// carries v1's original spelling ("profioe") so the stale option is removed.
+const OPT_LEGACY_COMPANY_DOMAIN = 'vt_profile_domain';
+const OPT_LEGACY_HAS_PATH       = 'vt_profioe_has_path';
+
 // -----------------------------------------------------------------------------
 // Cache TTL.
 // -----------------------------------------------------------------------------
@@ -54,7 +59,15 @@ const COMPANY_PROFILE_MAX_AGE = 4 * HOUR_IN_SECONDS;
 const API_CLIENT_TIMEOUT = 15;
 
 // -----------------------------------------------------------------------------
+// Shortcodes.
+// -----------------------------------------------------------------------------
+
+const SHORTCODE_REVIEWS = 'verify_trusted_reviews';
+
+// -----------------------------------------------------------------------------
 // Front-end.
 // -----------------------------------------------------------------------------
 
 const WIDGET_CONTAINER_CSS_CLASS = 'verify-trusted-widget';
+const LOADER_SCRIPT_PATH         = '/loader.js';
+const LOADER_SEAL_SCRIPT_PATH    = '/loader-seal.js';

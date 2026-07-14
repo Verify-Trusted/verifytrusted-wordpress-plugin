@@ -1,0 +1,170 @@
+# Copyright (C) 2026 Verify Trusted
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Language: de_DE\n"
+"Project-Id-Version: Verify Trusted Reviews 1.4.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/verifytrusted\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-14T19:01:31+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: verifytrusted\n"
+
+#. Plugin Name of the plugin
+#: verifytrusted.php
+msgid "Verify Trusted Reviews"
+msgstr "Verifizierte, vertrauenswürdige Bewertungen"
+
+#. Plugin URI of the plugin
+#: verifytrusted.php
+msgid "https://www.verifytrusted.com/"
+msgstr "https://www.verifytrusted.com/"
+
+#. Description of the plugin
+#: verifytrusted.php
+msgid "Display aggregated reviews from Verify Trusted on your site."
+msgstr "Zeigen Sie auf Ihrer Website zusammengefasste Bewertungen von „Verify Trusted“ an."
+
+#. Author of the plugin
+#: verifytrusted.php
+#: includes/class-plugin.php:156
+#: includes/class-plugin.php:157
+msgid "Verify Trusted"
+msgstr "Vertrauenswürdigkeit überprüfen"
+
+#: includes/class-admin-hooks.php:59
+msgid "Company data has been reset."
+msgstr "Die Unternehmensdaten wurden zurückgesetzt."
+
+#: includes/class-admin-hooks.php:78
+msgid "Save Settings"
+msgstr "Einstellungen speichern"
+
+#: includes/class-admin-hooks.php:88
+msgid "Reset Company Data"
+msgstr "Unternehmensdaten zurücksetzen"
+
+#: includes/class-admin-hooks.php:105
+msgid "Widget Preview"
+msgstr "Widget-Vorschau"
+
+#: includes/class-admin-hooks.php:125
+msgid "Diagnostics"
+msgstr "Diagnosen"
+
+#: includes/class-admin-hooks.php:130
+msgid "Plugin version"
+msgstr "Plugin version"
+
+#: includes/class-admin-hooks.php:135
+msgid "API host"
+msgstr "API-Host"
+
+#: includes/class-admin-hooks.php:140
+msgid "Admin host"
+msgstr "Admin-Host"
+
+#: includes/class-admin-hooks.php:145
+msgid "Widget UUID"
+msgstr "Widget-UUID"
+
+#: includes/class-admin-hooks.php:146
+#: includes/class-admin-hooks.php:153
+msgid "(not discovered)"
+msgstr "(nicht entdeckt)"
+
+#: includes/class-admin-hooks.php:152
+msgid "Trust seal UUID"
+msgstr "Trust-UUID"
+
+#: includes/class-admin-hooks.php:158
+msgid "Profile fetched"
+msgstr "Profil abgerufen"
+
+#: includes/class-admin-hooks.php:159
+msgctxt "timestamp: profile never fetched"
+msgid "(never)"
+msgstr "(nie)"
+
+#: includes/class-admin-hooks.php:164
+msgid "Company name"
+msgstr "Firmenname"
+
+#: includes/class-admin-hooks.php:165
+msgid "Average rating"
+msgstr "Durchschnittliche Bewertung"
+
+#: includes/class-admin-hooks.php:166
+msgid "Reviews count"
+msgstr "Bewertungen zählen"
+
+#: includes/class-admin-hooks.php:167
+msgctxt "company verification status"
+msgid "Verified"
+msgstr "Verifiziert"
+
+#: includes/class-admin-hooks.php:177
+msgctxt "boolean profile value"
+msgid "Yes"
+msgstr "Ja"
+
+#: includes/class-admin-hooks.php:177
+msgctxt "boolean profile value"
+msgid "No"
+msgstr "Von"
+
+#: includes/class-admin-hooks.php:190
+msgid "PHP version"
+msgstr "PHP-Version"
+
+#: includes/class-admin-hooks.php:195
+msgid "WordPress version"
+msgstr "WordPress version"
+
+#: includes/class-api-client.php:71
+msgid "Company domain is required."
+msgstr "Eine Unternehmensdomain ist erforderlich."
+
+#. translators: %s: error message from the HTTP request
+#: includes/class-api-client.php:98
+#, php-format
+msgid "Connection error: %s"
+msgstr "Verbindungsfehler: %s"
+
+#. translators: %s: the company domain that was not found
+#: includes/class-api-client.php:104
+#, php-format
+msgid "No company found for domain: %s"
+msgstr "Für die Domain %s wurde kein Unternehmen gefunden"
+
+#. translators: %d: HTTP response code
+#: includes/class-api-client.php:110
+#, php-format
+msgid "Unexpected API response (HTTP %d). Please try again."
+msgstr "Unerwartete API-Antwort (HTTP %d). Bitte versuchen Sie es erneut."
+
+#: includes/class-api-client.php:118
+msgid "Invalid response from the Verify Trusted API."
+msgstr "Ungültige Antwort von der „Verify Trusted API“."
+
+#: includes/class-settings.php:50
+msgctxt "settings section title"
+msgid "Connection"
+msgstr "Verbindung"
+
+#: includes/class-settings.php:59
+msgid "Company domain"
+msgstr "Unternehmensdomain"
+
+#: includes/class-settings.php:78
+msgid "Connect your site to your Verify Trusted account."
+msgstr "Verbinden Sie Ihre Website mit Ihrem „Verify Trusted“-Konto."
+
+#: includes/class-settings.php:102
+msgid "The domain registered with your review sources (e.g. Google Business Profile)."
+msgstr "Die Domain, die bei Ihren Bewertungsplattformen (z. B. Google Business Profile) registriert ist."

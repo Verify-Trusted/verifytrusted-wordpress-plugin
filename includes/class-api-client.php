@@ -37,7 +37,7 @@ class Api_Client {
 	 *
 	 * @since 1.2.0
 	 *
-	 * @param string $api_host The API base URL (e.g. https://api.staging.verifytrusted.com).
+	 * @param string $api_host The API base URL (e.g. https://api.verifytrusted.com).
 	 */
 	public function __construct( string $api_host ) {
 		$this->api_host = untrailingslashit( $api_host );
@@ -70,10 +70,16 @@ class Api_Client {
 		if ( empty( $company_domain ) ) {
 			$this->last_error = __( 'Company domain is required.', 'verifytrusted' );
 		} else {
+			// Encode each path segment individually so that slashes separating a
+			// domain from its branch path (e.g. example.com/branches/london) are
+			// preserved as real path separators. Encoding the whole value would
+			// turn "/" into "%2F" and break API routing (server-level 404).
+			$encoded_path = implode( '/', array_map( 'rawurlencode', explode( '/', $company_domain ) ) );
+
 			$url = sprintf(
 				'%s/api/public/company/%s',
 				$this->api_host,
-				rawurlencode( $company_domain )
+				$encoded_path
 			);
 
 			$args = array(

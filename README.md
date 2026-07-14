@@ -3,182 +3,39 @@
 [![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/verifytrusted)](https://wordpress.org/plugins/verifytrusted/)
 [![WordPress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/verifytrusted)](https://wordpress.org/plugins/verifytrusted/)
 [![WordPress Plugin Required PHP Version](https://img.shields.io/wordpress/plugin/required-php/verifytrusted)](https://wordpress.org/plugins/verifytrusted/)
+[![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dt/verifytrusted)](https://wordpress.org/plugins/verifytrusted/)
 [![License: GPLv2](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
-**Version:** 1.3.0
-**Requires WordPress:** 6.0+
-**Requires PHP:** 8.1+
-**Tested up to:** 6.8
-**License:** GPLv2 or later
+Display your aggregated [Verify Trusted](https://www.verifytrusted.com/) reviews on your WordPress site with a single shortcode.
 
-Display aggregated reviews from [Verify Trusted](https://www.verifytrusted.com/) on your WordPress site.
+## What it does
 
----
+Verify Trusted aggregates reviews from multiple platforms (Google, Facebook, Trustpilot, and more) into one feed. This plugin connects your WordPress site to your Verify Trusted account and embeds your reviews widget via `[verify_trusted_reviews]`.
 
-## Description
+**Who it's for:**
 
-Verify Trusted is a review aggregation SaaS that combines reviews from multiple platforms (Google, Facebook, etc.) into a single feed. This plugin connects your WordPress site to the Verify Trusted back-end and injects your reviews widget using a simple shortcode.
+- **Site owners & Verify Trusted clients** — connect your account by domain and drop the widget on any page. Start with **[Getting Started](docs/getting-started.md)**.
+- **Developers** — filters for environment switching, container classes, and the loader URL, plus direct access to the review data. Start with **[Hooks Reference](docs/hooks.md)**.
 
-### How It Works
+## Documentation
 
-1. Enter your company's primary domain (or sign up for a free account)
-2. The plugin calls the Verify Trusted API to fetch your company and widget metadata
-3. A `loader.js` script is injected on the front-end, rendering your aggregated reviews widget
-4. API responses are cached locally (4-hour TTL) to minimise external requests
-
-### Features
-
-- **Quick setup** - enter your domain or create a new Verify Trusted account from within WordPress
-- **Shortcode** - embed reviews anywhere with `[verify_trusted_reviews]`
-- **Style overrides** - customise card colours, fonts, and sizes via the admin panel
-- **Dark mode** - toggle dark background support for the widget preview
-- **Branch accounts** - support for domain+path profiles (e.g. `example.com/branches/london`)
-- **Zero cookies/telemetry** - no tracking, no cookies, no data sent beyond what you enter
-
----
-
-## Installation
-
-1. In the WordPress Admin, go to **Plugins > Add New > Upload Plugin**
-2. Upload the `verifytrusted.zip` file
-3. Activate the plugin
-4. Navigate to the **Verify Trusted** menu item in the admin sidebar
-
----
-
-## Usage
-
-### Connecting Your Account
-
-In the admin area, go to **Verify Trusted** and enter your company's primary domain. This must match the domain registered with your review sources (e.g. Google Business Profile).
-
-If you don't have a Verify Trusted account, use the sign-up form on the same page to create one for free.
-
-> **Note:** It may take a few minutes for your reviews to be collated on first setup.
-
-### Embedding the Widget
-
-Use the shortcode anywhere on your site:
-
-```
-[verify_trusted_reviews]
-```
-
-The widget is wrapped in a `<div>` with the CSS class `verify-trusted-widget`.
-
-### PHP Template Usage
-
-You can also render the widget directly in theme templates:
-
-```php
-<?php vtrust_simple_widget_html(); ?>
-
-// With additional CSS classes:
-<?php vtrust_simple_widget_html( array( 'my-custom-class' ) ); ?>
-```
-
-### Style Overrides
-
-When enabled, the following CSS custom properties can be set from the admin panel:
-
-| Property | CSS Variable |
-|---|---|
-| Card background colour | `--vtrust-card-bg-color` |
-| Card border colour | `--vtrust-card-border-color` |
-| Reviewer name colour | `--vtrust-name-color` |
-| Review body colour | `--vtrust-body-color` |
-| Font family | `--vtrust-font-family` |
-| Name font size | `--vtrust-name-font-size` |
-| Date font size | `--vtrust-date-font-size` |
-| Body font size | `--vtrust-body-font-size` |
-
----
-
-## Architecture
-
-```
-verifytrusted/
-├── verifytrusted.php          # Main plugin file, bootstrap
-├── constants.php              # All plugin constants
-├── functions.php              # Public helper functions (global namespace)
-├── functions-private.php      # Internal functions (Verify_Trusted namespace)
-├── includes/
-│   ├── class-plugin.php       # Core Plugin class - hooks, settings, rendering
-│   ├── class-admin-hooks.php  # Admin asset enqueuing, settings page rendering
-│   ├── class-api-client.php   # API Client - company lookup, widget fetch, signup
-│   └── shortcode-reviews-widget.php  # [verify_trusted_reviews] shortcode
-├── admin-views/
-│   ├── settings-page.php           # Main admin settings page
-│   ├── settings-page-no-account.php # Sign-up form (shown when not connected)
-│   ├── settings-style-overrides.php # Style customisation controls
-│   └── widgets-not-ready.php       # Shown while reviews are being collated
-├── assets/
-│   ├── vtrust-admin.css       # Admin page styles
-│   ├── vtrust-admin-all.css   # Admin-wide styles (e.g. menu icon)
-│   ├── vtrust-admin.js        # Admin page JavaScript
-│   ├── wpt-click-to-copy.css  # Click-to-copy component styles
-│   ├── wpt-click-to-copy.js   # Click-to-copy component script
-│   ├── verify-trusted-transparent.png  # Logo
-│   ├── green-star.svg         # Star rating icon
-│   └── spinner.svg            # Loading spinner
-├── languages/                 # Translation files (.pot, .po, .mo)
-├── dev-notes/                 # Development documentation
-└── .github/
-    └── copilot-instructions.md # Coding standards reference
-```
-
----
-
-## API Endpoints
-
-The plugin communicates with the following Verify Trusted API endpoints:
-
-| Endpoint | Method | Purpose |
+| Guide | For | Topic |
 |---|---|---|
-| `{api_host}/api/company?url={domain}` | GET | Look up company by domain |
-| `{api_host}/api/widgets/{company_id}/` | GET | Fetch widget metadata and reviews |
-| `{api_host}/api/users/register/` | POST | Create a new account |
+| [Getting Started](docs/getting-started.md) | Owners / clients | Install, connect your account, show reviews |
+| [Shortcode](docs/shortcode.md) | Owners / developers | `[verify_trusted_reviews]` usage and output |
+| [Customising the Appearance](docs/customising-appearance.md) | Owners / developers | Widget styling and container CSS |
+| [Hooks Reference](docs/hooks.md) | Developers | Filters and stored options |
+| [API Hosts](docs/environments.md) | Developers | Overriding the default API hosts |
+| [Raw Data & Custom Rendering](docs/raw-data-and-custom-rendering.md) | Developers | Fetch review JSON and render your own markup |
 
-The front-end widget is loaded via:
-```
-{admin_host}/loader.js?{widget_uuid}
-```
+## Requirements
 
-### Environment Switching
+- WordPress 6.0+
+- PHP 8.1+
+- A [Verify Trusted](https://www.verifytrusted.com/) account
 
-By default the plugin connects to the production servers. Developers can switch to staging (or any other environment) using a filter:
+## Links
 
-```php
-add_filter( 'verifytrusted_api_hosts', function ( array $hosts ): array {
-    return array(
-        'api'   => 'https://api.staging.verifytrusted.com',
-        'admin' => 'https://admin.staging.verifytrusted.com',
-    );
-} );
-```
-
-| Environment | API Host | Admin Host |
-|---|---|---|
-| Production (default) | `https://api.verifytrusted.com` | `https://admin.verifytrusted.com` |
-| Staging | `https://api.staging.verifytrusted.com` | `https://admin.staging.verifytrusted.com` |
-
----
-
-## External Services
-
-This plugin connects to the Verify Trusted API (`api.verifytrusted.com`). When registering a new account, the following data is sent based on values you enter:
-
-- Your name and email address
-- Business name
-- Primary website domain
-
-No additional data, telemetry, or cookies are collected.
-
-- [Verify Trusted Terms of Service](https://www.verifytrusted.com/terms-and-conditions)
-- [Verify Trusted Privacy Policy](https://www.verifytrusted.com/privacy)
-
----
-
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md) for the full release history.
+- WordPress.org: https://wordpress.org/plugins/verifytrusted/
+- Changelog: [CHANGELOG.md](CHANGELOG.md)
+- License: GPLv2 or later

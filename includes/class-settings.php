@@ -47,7 +47,7 @@ class Settings {
 
 		add_settings_section(
 			$this->section_connection,
-			__( 'Connection', 'verifytrusted' ),
+			_x( 'Connection', 'settings section title', 'verifytrusted' ),
 			array( $this, 'render_section_connection' ),
 			SETTINGS_PAGE_SLUG
 		);

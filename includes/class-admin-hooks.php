@@ -93,28 +93,41 @@ class Admin_Hooks {
 			echo '</form>';
 		}
 
-		// Widget preview.
-		$widget_uuid        = get_option( OPT_WIDGET_UUID, '' );
-		$company_profile    = get_option( OPT_COMPANY_PROFILE, array() );
-		$profile_data       = isset( $company_profile['data'] ) ? $company_profile['data'] : array();
-		$embed_snippet      = isset( $profile_data['widget_embed_snippet'] ) ? $profile_data['widget_embed_snippet'] : '';
-		$trust_seal_snippet = isset( $profile_data['trust_seal_html_snippet'] ) ? $profile_data['trust_seal_html_snippet'] : '';
+		// Widget preview. Built from the stored UUIDs and the resolved admin
+		// host, so the preview honours the environment filter rather than the
+		// API's pre-built (production-only) embed snippets.
+		$widget_uuid     = get_option( OPT_WIDGET_UUID, '' );
+		$company_profile = get_option( OPT_COMPANY_PROFILE, array() );
+		$profile_data    = isset( $company_profile['data'] ) ? $company_profile['data'] : array();
+		$trust_seal_uuid = isset( $profile_data['trust_seal_uuid'] ) ? $profile_data['trust_seal_uuid'] : '';
+		$admin_host      = $plugin->get_vt_url( VT_HOST_ADMIN );
 
-		if ( ! empty( $trust_seal_snippet ) || ! empty( $embed_snippet ) ) {
+		if ( ! empty( $widget_uuid ) || ! empty( $trust_seal_uuid ) ) {
 			echo '<hr />';
 			printf( '<h2>%s</h2>', esc_html__( 'Widget Preview', 'verifytrusted' ) );
 
-			if ( ! empty( $trust_seal_snippet ) ) {
-				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Pre-built script tag from VT API.
-				echo $trust_seal_snippet;
+			if ( ! empty( $trust_seal_uuid ) ) {
+				$seal_src = sprintf( '%s%s?%s', $admin_host, LOADER_SEAL_SCRIPT_PATH, rawurlencode( $trust_seal_uuid ) );
+				wp_print_inline_script_tag(
+					'',
+					array(
+						'src'   => $seal_src,
+						'async' => true,
+					)
+				);
 			}
 
-			if ( ! empty( $embed_snippet ) ) {
-				printf(
-					'<div class="%s">%s</div>',
-					esc_attr( WIDGET_CONTAINER_CSS_CLASS ),
-					$embed_snippet // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Pre-built script tag from VT API.
+			if ( ! empty( $widget_uuid ) ) {
+				$widget_src = sprintf( '%s%s?%s', $admin_host, LOADER_SCRIPT_PATH, rawurlencode( $widget_uuid ) );
+				printf( '<div class="%s">', esc_attr( WIDGET_CONTAINER_CSS_CLASS ) );
+				wp_print_inline_script_tag(
+					'',
+					array(
+						'src'   => $widget_src,
+						'async' => true,
+					)
 				);
+				echo '</div>';
 			}
 		}
 
@@ -156,7 +169,7 @@ class Admin_Hooks {
 		printf(
 			'<tr><th>%s</th><td><code>%s</code></td></tr>',
 			esc_html__( 'Profile fetched', 'verifytrusted' ),
-			! empty( $fetched_at ) ? esc_html( $fetched_at ) : esc_html__( '(never)', 'verifytrusted' )
+			! empty( $fetched_at ) ? esc_html( $fetched_at ) : esc_html_x( '(never)', 'timestamp: profile never fetched', 'verifytrusted' )
 		);
 
 		if ( ! empty( $profile_data ) ) {
@@ -164,7 +177,7 @@ class Admin_Hooks {
 				'name'           => __( 'Company name', 'verifytrusted' ),
 				'average_rating' => __( 'Average rating', 'verifytrusted' ),
 				'reviews_count'  => __( 'Reviews count', 'verifytrusted' ),
-				'is_verified'    => __( 'Verified', 'verifytrusted' ),
+				'is_verified'    => _x( 'Verified', 'company verification status', 'verifytrusted' ),
 			);
 
 			foreach ( $profile_fields as $field_key => $field_label ) {
@@ -174,7 +187,7 @@ class Admin_Hooks {
 
 				$display_value = $profile_data[ $field_key ];
 				if ( is_bool( $display_value ) ) {
-					$display_value = $display_value ? __( 'Yes', 'verifytrusted' ) : __( 'No', 'verifytrusted' );
+					$display_value = $display_value ? _x( 'Yes', 'boolean profile value', 'verifytrusted' ) : _x( 'No', 'boolean profile value', 'verifytrusted' );
 				}
 
 				printf(
