@@ -30,7 +30,7 @@ Verify Trusted aggregates reviews from multiple platforms (Google, Facebook, Tru
 
 ## Requirements
 
-- WordPress 6.0+
+- WordPress 6.4+
 - PHP 8.1+
 - A [Verify Trusted](https://www.verifytrusted.com/) account
 

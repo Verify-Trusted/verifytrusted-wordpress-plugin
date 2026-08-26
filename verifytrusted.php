@@ -4,7 +4,7 @@
  * Plugin URI:        https://www.verifytrusted.com/
  * Description:       Display aggregated reviews from Verify Trusted on your site.
  * Version:           1.4.0
- * Requires at least: 6.0
+ * Requires at least: 6.4
  * Requires PHP:      8.1
  * Author:            Verify Trusted
  * License:           GPLv2 or later

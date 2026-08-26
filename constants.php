@@ -64,6 +64,11 @@ const API_CLIENT_TIMEOUT = 15;
 
 const SHORTCODE_REVIEWS = 'verify_trusted_reviews';
 
+// Registered from M1.5a onwards. Declared here already so the admin snippet
+// panel can offer it via shortcode_exists() the moment it is registered,
+// without advertising a shortcode that does not yet resolve.
+const SHORTCODE_TOTALS = 'verify_trusted_totals';
+
 // -----------------------------------------------------------------------------
 // Front-end.
 // -----------------------------------------------------------------------------
@@ -71,3 +76,26 @@ const SHORTCODE_REVIEWS = 'verify_trusted_reviews';
 const WIDGET_CONTAINER_CSS_CLASS = 'verify-trusted-widget';
 const LOADER_SCRIPT_PATH         = '/loader.js';
 const LOADER_SEAL_SCRIPT_PATH    = '/loader-seal.js';
+
+// -----------------------------------------------------------------------------
+// Admin assets.
+// -----------------------------------------------------------------------------
+
+const ADMIN_ASSET_HANDLE = 'verifytrusted-admin';
+const ADMIN_STYLE_PATH   = 'assets/admin.css';
+const ADMIN_SCRIPT_PATH  = 'assets/admin.js';
+
+// -----------------------------------------------------------------------------
+// Admin shortcode snippets.
+// -----------------------------------------------------------------------------
+
+const SNIPPETS_CSS_CLASS = 'verifytrusted-snippets';
+const SNIPPET_CSS_CLASS  = 'verifytrusted-snippet';
+
+// Data attributes read by assets/admin.js. The plugin emits no inline script,
+// so every value the script needs travels on the button as a data- attribute.
+const SNIPPET_DATA_TEXT   = 'data-vtrust-copy';
+const SNIPPET_DATA_COPY   = 'data-vtrust-label-copy';
+const SNIPPET_DATA_COPIED = 'data-vtrust-label-copied';
+const SNIPPET_DATA_FAILED = 'data-vtrust-label-failed';
+const SNIPPET_DATA_STATUS = 'data-vtrust-copy-status';

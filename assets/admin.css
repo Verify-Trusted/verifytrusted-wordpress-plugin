@@ -1,0 +1,69 @@
+/**
+ * Admin styles for the Verify Trusted settings page.
+ *
+ * Colours are taken from the WordPress admin palette so the panel sits
+ * naturally alongside core UI in both the default and dark admin schemes.
+ *
+ * @since 1.5.0
+ */
+
+.verifytrusted-snippets {
+	margin: 0 0 1.5em;
+	max-width: 48em;
+}
+
+.verifytrusted-snippet {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 0;
+	border-bottom: 1px solid #dcdcde;
+}
+
+.verifytrusted-snippet:last-child {
+	border-bottom: 0;
+}
+
+.verifytrusted-snippet__code {
+	flex: 0 1 auto;
+	padding: 6px 10px;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 3px;
+	font-size: 13px;
+	line-height: 1.5;
+	/* Long source lists must scroll inside the chip, not widen the page. */
+	max-width: 100%;
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
+.verifytrusted-snippet__button {
+	flex: 0 0 auto;
+	/* Hold the widest label's width so the row does not reflow when the
+	   text swaps to "Copied!". */
+	min-width: 7em;
+}
+
+.verifytrusted-snippet__button.is-copied {
+	border-color: #00a32a;
+	color: #00a32a;
+}
+
+.verifytrusted-snippet__button.is-error {
+	border-color: #d63638;
+	color: #d63638;
+}
+
+.verifytrusted-snippet__description {
+	flex: 1 1 16em;
+	color: #646970;
+	font-size: 13px;
+}
+
+@media screen and ( max-width: 782px ) {
+	.verifytrusted-snippet__description {
+		flex-basis: 100%;
+	}
+}

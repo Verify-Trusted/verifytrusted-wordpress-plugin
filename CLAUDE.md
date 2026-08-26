@@ -7,7 +7,7 @@ WordPress plugin that connects to the verifytrusted.com SaaS to display aggregat
 - **Namespace:** `Verify_Trusted`
 - **Text Domain:** `verifytrusted`
 - **PHP:** 8.1+
-- **WordPress:** 6.0+
+- **WordPress:** 6.4+
 
 ---
 
